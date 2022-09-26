@@ -21,7 +21,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpClientErrorException.Forbidden;
 
-import javax.annotation.PostConstruct;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
@@ -30,7 +29,6 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-@Nested
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ExtendWith({PostgresSharedContainerExtension.class, RedisSharedContainerExtension.class})
@@ -135,6 +133,13 @@ class ProductApiIT {
     class WhenUserIsNotAuthenticatedAsSeller {
         UUID testProductId;
 
+        @BeforeAll
+        public void setup() {
+            testProductId = clientAsSeller.parseIdFromLocationHeader(clientAsSeller
+                    .product()
+                    .createProduct(new CreateProductDto("Random Product", 1, new BigDecimal("2.34"))));
+        }
+
         Stream<ApiClient> apiClientsNotAuthenticatedAsSeller() {
             return Stream.of(client, clientAsBuyer);
         }
@@ -143,12 +148,6 @@ class ProductApiIT {
             return Stream.of(client, clientAsBuyer, clientAsAnotherSeller);
         }
 
-        @PostConstruct
-        void setup() {
-            testProductId = clientAsSeller.parseIdFromLocationHeader(clientAsSeller
-                    .product()
-                    .createProduct(new CreateProductDto("Random Product", 1, new BigDecimal("2.34"))));
-        }
 
         @ParameterizedTest
         @MethodSource("apiClientsNotAuthenticatedAsSeller")

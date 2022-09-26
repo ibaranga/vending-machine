@@ -12,6 +12,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.web.client.DefaultResponseErrorHandler;
 import org.springframework.web.client.HttpClientErrorException;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -26,6 +27,10 @@ class UserApiIT {
     TestRestTemplate restTemplate;
     TokenPairDto currentTokenPair;
 
+    @BeforeAll
+    public void setup() {
+        restTemplate.getRestTemplate().setErrorHandler(new DefaultResponseErrorHandler());
+    }
 
     @Test
     @Order(1)
