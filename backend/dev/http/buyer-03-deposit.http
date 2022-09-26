@@ -1,0 +1,11 @@
+POST http://localhost:8888/api/vendingmachine/deposit
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+  "coins": 50
+}
+
+
+

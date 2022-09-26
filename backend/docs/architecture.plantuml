@@ -1,0 +1,38 @@
+@startuml
+skinparam componentStyle rectangle
+
+
+package "Frontend" {
+  [React App]
+}
+
+
+package "Backend" {
+  node "Java Application" {
+      [Web]
+      [Domain]
+      [Infrastructure]
+  }
+
+  database "Database"{
+     [Postgres]
+  }
+
+  node "Cache" {
+     [Redis]
+
+  }
+
+}
+
+[React App] --> [Web]
+[Infrastructure] --> [Postgres]
+[Infrastructure] --> [Redis]
+[Web] --> [Domain]
+[Infrastructure] --> [Domain]
+
+
+
+
+
+@enduml

@@ -1,0 +1,11 @@
+POST http://localhost:8888/api/product
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+  "productName": "Fanta",
+  "amountAvailable": 5,
+  "cost": 1.45
+}
+

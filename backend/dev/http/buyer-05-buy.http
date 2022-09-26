@@ -1,0 +1,13 @@
+POST http://localhost:8888/api/vendingmachine/buy
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+  "productId": "acaa23ed-6945-40c5-ad8c-3949c3d611d9",
+  "amount": 1
+}
+
+
+
+

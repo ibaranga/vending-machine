@@ -1,0 +1,24 @@
+{
+  "properties": [
+    {
+      "name": "security.jwt.access_token.secret",
+      "type": "java.lang.String",
+      "description": "Description for security.jwt.access_token.secret."
+    },
+    {
+      "name": "security.jwt.access_token.validity",
+      "type": "java.time.Duration",
+      "description": "Description for security.jwt.access_token.validity."
+    },
+    {
+      "name": "security.jwt.refresh_token.secret",
+      "type": "java.lang.String",
+      "description": "Description for security.jwt.refresh_token.secret."
+    },
+    {
+      "name": "security.jwt.refresh_token.validity",
+      "type": "java.time.Duration",
+      "description": "Description for security.jwt.refresh_token.validity."
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+GET http://localhost:8888/api/product
+Content-Type: application/json
+Accept: application/json
+
+
+
+

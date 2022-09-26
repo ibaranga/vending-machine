@@ -1,0 +1,67 @@
+@startuml
+
+group Register
+    autonumber
+    Client -> Server: Register request {username, password, role}
+    alt #lightgreen success
+        Server -> Client: HTTP 201 Created
+    else #Pink username collision | service unavailable | other reason
+        Server -> Client: HTTP 409 | 500
+    end
+end
+
+group Login
+    autonumber
+    Client -> Server: Login request {username, password}
+    Server -> Database: Query user by username
+    alt #lightgreen User found
+        Database -> Server: user info, incl password hash
+        Server -> Server: Verify password against store password hash
+        alt  #lightgreen Successful verification
+            Server -> Client: HTTP 200 {access_token1, refresh_token1}
+        else #Pink Failed verification
+            Server -> Client: HTTP 401
+        end
+    else #Pink User not found
+        Server -> Client: HTTP 401
+    end
+end group
+
+
+group Refresh
+    autonumber
+    Client -> Server: {refresh_token1}
+    Server -> Cache: Invalidate `refresh_token1` if exists and owned by requesting user
+    alt #lightgreen refresh_token1 existed
+        Server -> Server: generate {access_token2, refresh_token2}
+        Server -> Client: {access_token2, refresh_token2}
+    else #Pink refresh_token1 invalidation failed
+        Server -> Client: HTTP 401
+    end
+end group
+
+
+group Logout
+    autonumber
+    Client -> Server: {refresh_token2}
+    Server -> Cache: Invalidate `refresh_token2` if exists and owned by requesting user
+    alt #lightgreen refresh_token1 existed
+        Server -> Server: HTTP 204
+    else #Pink refresh_token1 invalidation failed
+        Server -> Client: HTTP 401
+    end
+end group
+
+group Logout All
+    autonumber
+    Client -> Server: {refresh_token}
+    Server -> Cache: Invalidate `refresh_token` and all related tokens exists if owned by requesting user
+    alt #lightgreen refresh_token existed
+        Server -> Server: HTTP 204
+    else #Pink refresh_token1 invalidation failed
+        Server -> Client: HTTP 401
+    end
+end group
+
+
+@enduml

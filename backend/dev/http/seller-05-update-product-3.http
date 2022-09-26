@@ -1,0 +1,12 @@
+PUT http://localhost:8888/api/product/ac6ee258-b3f2-4ca5-bd09-862de2fb7b07
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+  "amountAvailable": 10,
+  "cost": 1.60
+}
+
+
+

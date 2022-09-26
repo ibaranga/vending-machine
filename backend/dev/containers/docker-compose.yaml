@@ -1,0 +1,13 @@
+services:
+  db:
+    image: postgres:14.5
+    ports:
+      - "54321:5432"
+    environment:
+      - POSTGRES_PASSWORD=test
+      - POSTGRES_USER=test
+      - POSTGRES_DB=vending_machine
+  cache:
+    image: redis:7.0.5
+    ports:
+      - "63791:6379"

@@ -1,0 +1,8 @@
+GET http://localhost:8888/api/vendingmachine/balance
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{accessToken}}
+
+
+
+

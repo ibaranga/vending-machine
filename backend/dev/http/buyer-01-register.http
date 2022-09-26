@@ -1,0 +1,12 @@
+POST http://localhost:8888/api/user
+Content-Type: application/json
+Accept: application/json
+
+{
+  "username": "buyer1",
+  "password": "secret123",
+  "role": "buyer"
+}
+
+
+

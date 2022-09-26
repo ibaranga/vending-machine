@@ -1,0 +1,16 @@
+{
+  "name": "frontend-e2e",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "cypress:open": "npx cypress open",
+    "cypress:run": "COMMAND_DELAY=100; npx cypress run"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^10.8.0"
+  }
+}

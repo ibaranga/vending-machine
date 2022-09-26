@@ -1,0 +1,7 @@
+GET http://localhost:8888/api/product/seller
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{accessToken}}
+
+
+
