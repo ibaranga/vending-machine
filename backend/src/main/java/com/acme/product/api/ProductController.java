@@ -2,12 +2,12 @@ package com.acme.product.api;
 
 import com.acme.common.api.SecurityHelper;
 import com.acme.product.domain.ProductService;
+import jakarta.annotation.security.PermitAll;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.security.PermitAll;
 import java.net.URI;
 import java.util.UUID;
 

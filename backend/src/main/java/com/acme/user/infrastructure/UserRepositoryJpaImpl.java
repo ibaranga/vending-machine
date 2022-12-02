@@ -17,11 +17,9 @@ public class UserRepositoryJpaImpl implements UserRepository {
         this.repository = repository;
     }
 
-    @Override
     public Optional<User> findByUsername(String username) {
         return repository.findOneByUsername(username).map(UserEntityAdapter::adapt);
     }
-
     @Override
     public UUID save(User user) {
         try {

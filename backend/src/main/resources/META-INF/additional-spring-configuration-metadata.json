@@ -6,9 +6,9 @@
       "description": "Description for security.jwt.access_token.secret."
     },
     {
-      "name": "security.jwt.access_token.validity",
+      "name": "security.jwt.access_token.duration",
       "type": "java.time.Duration",
-      "description": "Description for security.jwt.access_token.validity."
+      "description": "Description for security.jwt.access_token.duration."
     },
     {
       "name": "security.jwt.refresh_token.secret",
@@ -16,9 +16,9 @@
       "description": "Description for security.jwt.refresh_token.secret."
     },
     {
-      "name": "security.jwt.refresh_token.validity",
+      "name": "security.jwt.refresh_token.duration",
       "type": "java.time.Duration",
-      "description": "Description for security.jwt.refresh_token.validity."
+      "description": "Description for security.jwt.refresh_token.duration."
     }
   ]
 }

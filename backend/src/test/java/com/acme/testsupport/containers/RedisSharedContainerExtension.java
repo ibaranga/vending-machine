@@ -12,8 +12,8 @@ public class RedisSharedContainerExtension implements BeforeAllCallback {
         if (container == null) {
             container = new GenericContainer<>(IMAGE_VERSION);
             container.withExposedPorts(6379).withReuse(true).start();
-            System.setProperty("spring.redis.host", "localhost");
-            System.setProperty("spring.redis.port", String.valueOf(container.getMappedPort(6379)));
+            System.setProperty("spring.data.redis.host", "localhost");
+            System.setProperty("spring.data.redis.port", String.valueOf(container.getMappedPort(6379)));
         }
     }
 

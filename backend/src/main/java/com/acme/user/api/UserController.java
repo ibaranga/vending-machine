@@ -2,12 +2,12 @@ package com.acme.user.api;
 
 import com.acme.user.application.UserApiUseCases;
 import com.acme.user.domain.UserRole;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
 import java.net.URI;
 import java.util.UUID;
 

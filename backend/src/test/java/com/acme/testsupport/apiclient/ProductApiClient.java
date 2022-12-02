@@ -1,12 +1,12 @@
 package com.acme.testsupport.apiclient;
 
 import com.acme.product.api.ProductApi;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import javax.validation.Valid;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import java.util.UUID;
 
 import static java.util.Objects.requireNonNull;

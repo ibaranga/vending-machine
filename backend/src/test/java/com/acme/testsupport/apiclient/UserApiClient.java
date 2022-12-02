@@ -1,10 +1,9 @@
 package com.acme.testsupport.apiclient;
 
 import com.acme.user.api.UserApi;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
-
-import javax.validation.Valid;
 
 class UserApiClient implements UserApi {
     private final RestTemplate restTemplate;
