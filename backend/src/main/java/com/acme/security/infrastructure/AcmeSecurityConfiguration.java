@@ -24,8 +24,8 @@ public class AcmeSecurityConfiguration {
                 .authorizeHttpRequests(matcherRegistry -> matcherRegistry
                         .requestMatchers(HttpMethod.GET, "/product").permitAll()
                         .requestMatchers(HttpMethod.POST, "/user", "/user/login", "/user/refresh", "/user/logout", "/user/logout/all").permitAll()
-                        .requestMatchers("/product", "/product/**").hasRole(UserRole.SELLER.getId())
-                        .requestMatchers("/vendingmachine", "/vendingmachine/**").hasRole(UserRole.BUYER.getId())
+                        .requestMatchers("/product").hasRole(UserRole.SELLER.getId())
+                        .requestMatchers("/vendingmachine").hasRole(UserRole.BUYER.getId())
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(configurer -> configurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
