@@ -28,7 +28,7 @@ export const productApi = createApi({
     }),
     createProduct: builder.mutation<void, CreateProductRequest>({
       query: (body: CreateProductRequest) => ({
-        url: "/",
+        url: "",
         method: "POST",
         body,
         validateStatus: isNon5xxStatusCodeResponse,

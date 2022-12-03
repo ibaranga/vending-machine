@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "cypress:install": "cypress install",
     "cypress:open": "npx cypress open",
     "cypress:run": "COMMAND_DELAY=100; npx cypress run"
   },
@@ -11,6 +12,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^10.8.0"
+    "cypress": "11.2.0"
   }
 }
