@@ -65,6 +65,53 @@ The application security is implemented using spring-web-security library and co
 
 </details>
 
+## Running 
+### Prerequisites
+- docker environment
+- jdk >= 17
+
+### Backing services 
+The easiest way to start the backing services (database, cache) by running the docker containers from `backend/dev/vending-machine-dev-containers/docker-compose.yaml`
+```shell
+cd dev/dev-backing-services
+docker-compose up -d 
+```
+
+### Backend App
+The backend can be started 
+- In an IDE, by running the main class `VendingMachineApplication` 
+- In CLI mode, by running the spring boot plugin `mvn spring-boot:run` target
+```shell
+cd backend
+./mvnw spring-boot:run
+```
+### Frontend App
+The frontend app can be started in dev-mode `npm run start` command
+```shell
+cd frontend
+npm run start
+```
+
+### Cypress end-to-end tests
+
+The end-to-end tests can be run against local environment, once:
+- the initial setup is done
+```shell
+npm run cypress:install
+```
+- [Backing services](#backing-services), [Backend](#backend-app) and [Frontend](#frontend-app) are up and running
+
+#### In visual mode (Chrome or Electron browser)
+```shell
+cd frontend-e2e
+npm run cypress:open
+```
+#### Headless mode
+```shell
+cd frontend-e2e
+npm run cypress:run
+```
+
 ## Testing
 
 The application correctness is covered by the following categories of tests:

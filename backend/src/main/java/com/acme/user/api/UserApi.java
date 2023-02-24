@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 @PreAuthorize("permitAll()")
 public interface UserApi {
     @PostMapping
     ResponseEntity<Void> register(@RequestBody @Valid CreateUserRequestDto createUserRequestDto);
 
     @PostMapping("/login")
-    ResponseEntity<LoginResponseDto> login(@RequestBody @Valid UserApi.LoginRequestDto loginRequestDto);
+    ResponseEntity<LoginResponseDto> login(@RequestBody @Valid LoginRequestDto loginRequestDto);
 
     @PostMapping("/refresh")
     ResponseEntity<TokenPairDto> refresh(@RequestBody @Valid RefreshTokenDto loginDto);

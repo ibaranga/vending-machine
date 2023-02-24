@@ -1,4 +1,4 @@
-import { Product } from "../../services/productApi";
+import { Product } from "../../services/productsApi";
 import React, { useMemo } from "react";
 import { useBuyMutation, useGetBalanceQuery } from "../../services/vendingMachineApi";
 import { Box, Button } from "@mui/material";

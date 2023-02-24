@@ -1,7 +1,7 @@
 import React from "react";
 import { useLoggedInUser } from "../../hooks/useLoggedInUser";
 import { Navigate } from "react-router-dom";
-import { UserRole } from "../../services/userApi";
+import { UserRole } from "../../services/usersApi";
 import { ProductGrid } from "../product/ProductGrid";
 
 export const SellerHome: React.FC = () => {

@@ -12,7 +12,7 @@ import java.net.URI;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 @Validated
 public class UserController implements UserApi {
     private final UserApiUseCases userApiUseCases;

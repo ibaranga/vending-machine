@@ -1,6 +1,6 @@
 import React from "react";
 import { Guard } from "../../common/Guard";
-import { UserRole } from "../../services/userApi";
+import { UserRole } from "../../services/usersApi";
 import { Navigate } from "react-router-dom";
 
 export const Home: React.FC = () => {

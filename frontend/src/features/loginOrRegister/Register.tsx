@@ -1,6 +1,6 @@
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
-import { CreateUserRequest, useCreateUserMutation, UserRole } from "../../services/userApi";
+import { CreateUserRequest, useCreateUserMutation, UserRole } from "../../services/usersApi";
 import {
   Alert,
   Box,

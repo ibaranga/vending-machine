@@ -1,4 +1,4 @@
-GET http://localhost:8888/api/product/ac6ee258-b3f2-4ca5-bd09-862de2fb7b07
+GET http://localhost:8888/api/products/seller
 Content-Type: application/json
 Accept: application/json
 Authorization: Bearer {{accessToken}}

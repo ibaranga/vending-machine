@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLoggedInUser } from "../../hooks/useLoggedInUser";
 import { Box, Button, Dialog, DialogTitle, Paper, Typography } from "@mui/material";
-import { useLogoutAllMutation } from "../../services/userApi";
+import { useLogoutAllMutation } from "../../services/usersApi";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store";
 import { setAlert } from "../alert/alertSlice";

@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from "react";
 import { Navigate, Outlet } from "react-router-dom";
-import { UserRole } from "../services/userApi";
+import { UserRole } from "../services/usersApi";
 import { Guard } from "./Guard";
 
 export interface Props extends PropsWithChildren {

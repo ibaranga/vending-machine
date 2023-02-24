@@ -1,10 +1,10 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { fetchBaseQueryWithReauth, isNon5xxStatusCodeResponse } from "./common";
 
-export const productApi = createApi({
+export const productsApi = createApi({
   reducerPath: "productApi",
   baseQuery: fetchBaseQueryWithReauth({
-    baseUrl: "/api/product",
+    baseUrl: "/api/products",
   }),
   tagTypes: ["inventory"],
   endpoints: (builder) => ({
@@ -91,4 +91,4 @@ export const {
   useCreateProductMutation,
   useUpdateProductMutation,
   useDeleteProductMutation,
-} = productApi;
+} = productsApi;

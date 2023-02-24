@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { productApi } from "./services/productApi";
-import { userApi } from "./services/userApi";
+import { productsApi } from "./services/productsApi";
+import { usersApi } from "./services/usersApi";
 import { vendingMachineApi } from "./services/vendingMachineApi";
 import { alertOnError } from "./middleware/alertOnError";
 import { loginSlice } from "./features/loginOrRegister/loginSlice";
@@ -9,16 +9,16 @@ import { alertSlice } from "./features/alert/alertSlice";
 const getStore = () => {
   return configureStore({
     reducer: {
-      [productApi.reducerPath]: productApi.reducer,
-      [userApi.reducerPath]: userApi.reducer,
+      [productsApi.reducerPath]: productsApi.reducer,
+      [usersApi.reducerPath]: usersApi.reducer,
       [vendingMachineApi.reducerPath]: vendingMachineApi.reducer,
       [loginSlice.name]: loginSlice.reducer,
       [alertSlice.name]: alertSlice.reducer,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(
-        productApi.middleware,
-        userApi.middleware,
+        productsApi.middleware,
+        usersApi.middleware,
         vendingMachineApi.middleware,
         alertOnError,
       ),

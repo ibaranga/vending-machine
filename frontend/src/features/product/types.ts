@@ -1,4 +1,4 @@
-import { Product } from "../../services/productApi";
+import { Product } from "../../services/productsApi";
 
 export interface ProductRows {
   products: ProductRow[];

@@ -36,20 +36,20 @@ class UserApiIT {
     @Order(1)
     void shouldRegisterASingleTimeWithAUsernameAndLogin() {
         ResponseEntity<Void> response =
-                restTemplate.postForEntity("/user", new CreateUserRequestDto("buyer", "secretpass", "buyer"), Void.class);
+                restTemplate.postForEntity("/users", new CreateUserRequestDto("buyer", "secretpass", "buyer"), Void.class);
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
 
         assertThrows(HttpClientErrorException.Conflict.class,
-                () -> restTemplate.postForEntity("/user", new CreateUserRequestDto("buyer", "secretpass", "buyer"), Void.class));
+                () -> restTemplate.postForEntity("/users", new CreateUserRequestDto("buyer", "secretpass", "buyer"), Void.class));
 
-        restTemplate.postForEntity("/user", new CreateUserRequestDto("another_buyer", "secretpass", "buyer"), Void.class);
+        restTemplate.postForEntity("/users", new CreateUserRequestDto("another_buyer", "secretpass", "buyer"), Void.class);
     }
 
     @Test
     @Order(2)
     void shouldGetAccessAndRefreshTokenOnLogin() {
         ResponseEntity<LoginResponseDto> loginResponseEntity =
-                restTemplate.postForEntity("/user/login", new LoginRequestDto("buyer", "secretpass"), LoginResponseDto.class);
+                restTemplate.postForEntity("/users/login", new LoginRequestDto("buyer", "secretpass"), LoginResponseDto.class);
         assertEquals(HttpStatus.OK, loginResponseEntity.getStatusCode());
         assertNotNull(loginResponseEntity.getBody());
 
@@ -63,7 +63,7 @@ class UserApiIT {
     @Order(2)
     void shouldGetNewAccessAndRefreshTokensOnRefresh() {
         ResponseEntity<TokenPairDto> loginResponseEntity =
-                restTemplate.postForEntity("/user/refresh", new RefreshTokenDto(currentTokenPair.refreshToken()), TokenPairDto.class);
+                restTemplate.postForEntity("/users/refresh", new RefreshTokenDto(currentTokenPair.refreshToken()), TokenPairDto.class);
         assertEquals(HttpStatus.OK, loginResponseEntity.getStatusCode());
         assertNotNull(loginResponseEntity.getBody());
 
@@ -80,10 +80,10 @@ class UserApiIT {
     @Order(3)
     void shouldNotAllowRefreshingAgainWithAlreadyUsedRefreshToken() {
         ResponseEntity<TokenPairDto> refreshResponseEntity =
-                restTemplate.postForEntity("/user/refresh", new RefreshTokenDto(currentTokenPair.refreshToken()), TokenPairDto.class);
+                restTemplate.postForEntity("/users/refresh", new RefreshTokenDto(currentTokenPair.refreshToken()), TokenPairDto.class);
 
         assertThrows(HttpClientErrorException.Unauthorized.class,
-                () -> restTemplate.postForEntity("/user/refresh", new RefreshTokenDto(currentTokenPair.refreshToken()), TokenPairDto.class)
+                () -> restTemplate.postForEntity("/users/refresh", new RefreshTokenDto(currentTokenPair.refreshToken()), TokenPairDto.class)
         );
 
         assertEquals(HttpStatus.OK, refreshResponseEntity.getStatusCode());
@@ -101,11 +101,11 @@ class UserApiIT {
     @Order(4)
     void shouldNoLongerBeAbleToUseRefreshTokenAfterLogout() {
         ResponseEntity<Void> logoutResponseEntity =
-                restTemplate.postForEntity("/user/logout", new RefreshTokenDto(currentTokenPair.refreshToken()), Void.class);
+                restTemplate.postForEntity("/users/logout", new RefreshTokenDto(currentTokenPair.refreshToken()), Void.class);
         assertEquals(HttpStatus.NO_CONTENT, logoutResponseEntity.getStatusCode());
 
         assertThrows(HttpClientErrorException.Unauthorized.class,
-                () -> restTemplate.postForEntity("/user/refresh", new RefreshTokenDto(currentTokenPair.refreshToken()), TokenPairDto.class)
+                () -> restTemplate.postForEntity("/users/refresh", new RefreshTokenDto(currentTokenPair.refreshToken()), TokenPairDto.class)
         );
     }
 
@@ -113,19 +113,19 @@ class UserApiIT {
     @Order(5)
     void shouldIncrementTheActiveSessionCountOnLogin() {
         ResponseEntity<LoginResponseDto> loginResponse1 =
-                restTemplate.postForEntity("/user/login", new LoginRequestDto("buyer", "secretpass"), LoginResponseDto.class);
+                restTemplate.postForEntity("/users/login", new LoginRequestDto("buyer", "secretpass"), LoginResponseDto.class);
         assertEquals(HttpStatus.OK, loginResponse1.getStatusCode());
         assertNotNull(loginResponse1.getBody());
         assertEquals(1, loginResponse1.getBody().numActiveSessions());
 
         ResponseEntity<LoginResponseDto> loginResponse2 =
-                restTemplate.postForEntity("/user/login", new LoginRequestDto("buyer", "secretpass"), LoginResponseDto.class);
+                restTemplate.postForEntity("/users/login", new LoginRequestDto("buyer", "secretpass"), LoginResponseDto.class);
         assertEquals(HttpStatus.OK, loginResponse2.getStatusCode());
         assertNotNull(loginResponse2.getBody());
         assertEquals(2, loginResponse2.getBody().numActiveSessions());
 
         ResponseEntity<LoginResponseDto> loginResponse3 =
-                restTemplate.postForEntity("/user/login", new LoginRequestDto("buyer", "secretpass"), LoginResponseDto.class);
+                restTemplate.postForEntity("/users/login", new LoginRequestDto("buyer", "secretpass"), LoginResponseDto.class);
         assertEquals(HttpStatus.OK, loginResponse3.getStatusCode());
         assertNotNull(loginResponse3.getBody());
         assertEquals(3, loginResponse3.getBody().numActiveSessions());
@@ -135,16 +135,16 @@ class UserApiIT {
     @Order(6)
     void shouldDecrementTheActiveSessionCountOnLogout() {
         ResponseEntity<LoginResponseDto> loginResponse1 =
-                restTemplate.postForEntity("/user/login", new LoginRequestDto("buyer", "secretpass"), LoginResponseDto.class);
+                restTemplate.postForEntity("/users/login", new LoginRequestDto("buyer", "secretpass"), LoginResponseDto.class);
         assertEquals(HttpStatus.OK, loginResponse1.getStatusCode());
         assertNotNull(loginResponse1.getBody());
         assertEquals(4, loginResponse1.getBody().numActiveSessions());
 
-        ResponseEntity<Void> logoutResponse = restTemplate.postForEntity("/user/logout", new RefreshTokenDto(loginResponse1.getBody().refreshToken()), Void.class);
+        ResponseEntity<Void> logoutResponse = restTemplate.postForEntity("/users/logout", new RefreshTokenDto(loginResponse1.getBody().refreshToken()), Void.class);
         assertEquals(HttpStatus.NO_CONTENT, logoutResponse.getStatusCode());
 
         ResponseEntity<LoginResponseDto> loginResponse2 =
-                restTemplate.postForEntity("/user/login", new LoginRequestDto("buyer", "secretpass"), LoginResponseDto.class);
+                restTemplate.postForEntity("/users/login", new LoginRequestDto("buyer", "secretpass"), LoginResponseDto.class);
         assertEquals(HttpStatus.OK, loginResponse2.getStatusCode());
         assertNotNull(loginResponse2.getBody());
         assertEquals(4, loginResponse2.getBody().numActiveSessions());
@@ -155,16 +155,16 @@ class UserApiIT {
     @Order(7)
     void shouldDecrementToZeroTheActiveSessionCountOnLogoutall() {
         ResponseEntity<LoginResponseDto> loginResponse1 =
-                restTemplate.postForEntity("/user/login", new LoginRequestDto("buyer", "secretpass"), LoginResponseDto.class);
+                restTemplate.postForEntity("/users/login", new LoginRequestDto("buyer", "secretpass"), LoginResponseDto.class);
         assertEquals(HttpStatus.OK, loginResponse1.getStatusCode());
         assertNotNull(loginResponse1.getBody());
         assertEquals(5, loginResponse1.getBody().numActiveSessions());
 
-        ResponseEntity<Void> logoutResponse = restTemplate.postForEntity("/user/logout/all", new RefreshTokenDto(loginResponse1.getBody().refreshToken()), Void.class);
+        ResponseEntity<Void> logoutResponse = restTemplate.postForEntity("/users/logout/all", new RefreshTokenDto(loginResponse1.getBody().refreshToken()), Void.class);
         assertEquals(HttpStatus.NO_CONTENT, logoutResponse.getStatusCode());
 
         ResponseEntity<LoginResponseDto> loginResponse2 =
-                restTemplate.postForEntity("/user/login", new LoginRequestDto("buyer", "secretpass"), LoginResponseDto.class);
+                restTemplate.postForEntity("/users/login", new LoginRequestDto("buyer", "secretpass"), LoginResponseDto.class);
         assertEquals(HttpStatus.OK, loginResponse2.getStatusCode());
         assertNotNull(loginResponse2.getBody());
         assertEquals(1, loginResponse2.getBody().numActiveSessions());

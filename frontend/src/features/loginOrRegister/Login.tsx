@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { LoginRequest, useLoginMutation, UserTokenClaims } from "../../services/userApi";
+import { LoginRequest, useLoginMutation, UserTokenClaims } from "../../services/usersApi";
 import {
   Alert,
   Box,

@@ -21,7 +21,7 @@ class ProductApiClient implements ProductApi {
     @Override
     public ResponseEntity<GetProductsResponseDto> getProducts(int page, int size) {
         return restTemplate.getForEntity(
-                "/product?page={page}&size={size}",
+                "/products?page={page}&size={size}",
                 GetProductsResponseDto.class, page, size
         );
     }
@@ -29,29 +29,29 @@ class ProductApiClient implements ProductApi {
     @Override
     public ResponseEntity<GetProductsResponseDto> getSellerProducts(@Valid @Min(0) int page, @Valid @Max(100) int size) {
         return restTemplate.getForEntity(
-                "/product/seller?page={page}&size={size}",
+                "/products/seller?page={page}&size={size}",
                 GetProductsResponseDto.class, page, size
         );
     }
 
     @Override
     public ResponseEntity<Void> createProduct(CreateProductDto createProductDto) {
-        return restTemplate.postForEntity("/product", requireNonNull(createProductDto), Void.class);
+        return restTemplate.postForEntity("/products", requireNonNull(createProductDto), Void.class);
     }
 
     @Override
     public ResponseEntity<ProductDto> getProduct(UUID productId) {
-        return restTemplate.getForEntity("/product/{productId}", ProductDto.class, requireNonNull(productId));
+        return restTemplate.getForEntity("/products/{productId}", ProductDto.class, requireNonNull(productId));
     }
 
     @Override
     public void updateProduct(UUID productId, UpdateProductDto updateProductDto) {
-        restTemplate.put("/product/{productId}", requireNonNull(updateProductDto), requireNonNull(productId));
+        restTemplate.put("/products/{productId}", requireNonNull(updateProductDto), requireNonNull(productId));
     }
 
     @Override
     public void deleteProduct(UUID productId) {
-        restTemplate.delete("/product/{productId}", requireNonNull(productId));
+        restTemplate.delete("/products/{productId}", requireNonNull(productId));
     }
 
 }

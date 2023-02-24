@@ -12,7 +12,7 @@ import java.net.URI;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/products")
 @Validated
 public class ProductController implements ProductApi {
     private final ProductService productService;

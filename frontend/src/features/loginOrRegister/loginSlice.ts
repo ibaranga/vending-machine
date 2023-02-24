@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { TokenPair, User } from "../../services/userApi";
+import { TokenPair, User } from "../../services/usersApi";
 
 export interface LoginState {
   user?: User;

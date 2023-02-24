@@ -4,7 +4,7 @@ import {
   useCreateProductMutation,
   useGetSellerProductsQuery,
   useUpdateProductMutation,
-} from "../../services/productApi";
+} from "../../services/productsApi";
 import { Box, Dialog, DialogTitle, Grid, IconButton, Typography } from "@mui/material";
 import { AddOutlined, EditOutlined } from "@mui/icons-material";
 import { ProductForm, ProductFormModel } from "./ProductForm";

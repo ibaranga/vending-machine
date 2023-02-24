@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useLoggedInUser } from "../hooks/useLoggedInUser";
 import { Button } from "@mui/material";
-import { useLogoutMutation } from "../services/userApi";
+import { useLogoutMutation } from "../services/usersApi";
 
 export const LogoutButton: React.FC = () => {
   const [user, setUser] = useLoggedInUser();

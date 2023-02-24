@@ -1,7 +1,7 @@
 import React from "react";
 import { VendingMachineMenu } from "../vendingMachine/VendingMachineMenu";
 import { useLoggedInUser } from "../../hooks/useLoggedInUser";
-import { UserRole } from "../../services/userApi";
+import { UserRole } from "../../services/usersApi";
 import { Navigate } from "react-router-dom";
 import { VendingMachineAccount } from "../vendingMachine/VendingMachineAccount";
 import { Box } from "@mui/material";

@@ -22,9 +22,9 @@ public class AcmeSecurityConfiguration {
                 .csrf().disable()
                 .cors().and()
                 .authorizeHttpRequests(matcherRegistry -> matcherRegistry
-                        .requestMatchers(HttpMethod.GET, "/product").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/user", "/user/login", "/user/refresh", "/user/logout", "/user/logout/all").permitAll()
-                        .requestMatchers("/product").hasRole(UserRole.SELLER.getId())
+                        .requestMatchers(HttpMethod.GET, "/products").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/users", "/users/login", "/users/refresh", "/users/logout", "/users/logout/all").permitAll()
+                        .requestMatchers("/products").hasRole(UserRole.SELLER.getId())
                         .requestMatchers("/vendingmachine").hasRole(UserRole.BUYER.getId())
                         .anyRequest().authenticated()
                 )

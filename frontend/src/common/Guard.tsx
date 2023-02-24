@@ -1,5 +1,5 @@
 import React from "react";
-import { UserRole } from "../services/userApi";
+import { UserRole } from "../services/usersApi";
 import { useLoggedInUser } from "../hooks/useLoggedInUser";
 
 interface GuardRule {

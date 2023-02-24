@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { RouteGuard } from "./common/RouteGuard";
-import { UserRole } from "./services/userApi";
+import { UserRole } from "./services/usersApi";
 import { Home } from "./features/home/Home";
 import { BuyerHome } from "./features/home/BuyerHome";
 import { SellerHome } from "./features/home/SellerHome";

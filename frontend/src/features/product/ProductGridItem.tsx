@@ -1,7 +1,7 @@
 import { Box, Grid, Paper, Typography } from "@mui/material";
 import { Money } from "../../common/Money";
 import React from "react";
-import { Product } from "../../services/productApi";
+import { Product } from "../../services/productsApi";
 
 interface Props {
   product: Product;

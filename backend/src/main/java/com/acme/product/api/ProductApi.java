@@ -14,7 +14,7 @@ import java.util.UUID;
 
 
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/products")
 public interface ProductApi {
     @GetMapping()
     ResponseEntity<GetProductsResponseDto> getProducts(

@@ -5,7 +5,7 @@ import {
   removeLoggedInUser,
   setLoggedInUser,
 } from "../features/loginOrRegister/loginSlice";
-import { User } from "../services/userApi";
+import { User } from "../services/usersApi";
 
 export function useLoggedInUser(): [User | null, (user: User | null) => void] {
   const dispatch = useDispatch();

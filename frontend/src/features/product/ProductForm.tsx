@@ -1,4 +1,4 @@
-import { Product } from "../../services/productApi";
+import { Product } from "../../services/productsApi";
 import React from "react";
 import { Box, Button, Card, CardActions, CardHeader, TextField } from "@mui/material";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";

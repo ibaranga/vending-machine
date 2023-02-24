@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid } from "@mui/material";
-import { useGetProductsQuery } from "../../services/productApi";
+import { useGetProductsQuery } from "../../services/productsApi";
 import { VendingMachineProductCard } from "./VendingMachineProductCard";
 
 export const VendingMachineMenu: React.FC = () => {

@@ -2,7 +2,7 @@ import { BaseQueryApi, BaseQueryFn } from "@reduxjs/toolkit/dist/query/baseQuery
 import { RootState } from "../store";
 import { FetchArgs, fetchBaseQuery, FetchBaseQueryError } from "@reduxjs/toolkit/query/react";
 import { removeLoggedInUser, setTokenPair } from "../features/loginOrRegister/loginSlice";
-import { TokenPair, User } from "./userApi";
+import { TokenPair, User } from "./usersApi";
 
 export function isNon5xxStatusCodeResponse(response: Response) {
   return !is5xxStatusCode(response?.status);
@@ -27,7 +27,7 @@ export function prepareHeadersWithToken(headers: Headers, opts: Pick<BaseQueryAp
 export function fetchBaseQueryWithReauth({ baseUrl }: { baseUrl: string }) {
   const setOfStatusCodesToAttemptRefresh = new Set([401, 403]);
 
-  const userApiBaseQuery = fetchBaseQuery({ baseUrl: "/api/user" });
+  const userApiBaseQuery = fetchBaseQuery({ baseUrl: "/api/users" });
 
   const wrappedBaseQuery = fetchBaseQuery({ baseUrl, prepareHeaders: prepareHeadersWithToken });
 
